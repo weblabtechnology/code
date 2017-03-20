@@ -1,3 +1,4 @@
+/usr/bin/php /path_to_config_project/run.php
 …
  — DB_ADMIN_NAME=admin_database_name
  — DB_ADMIN_USER=root
