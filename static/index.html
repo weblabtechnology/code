@@ -17,3 +17,32 @@
 <h1>Log container</h1>
 <div id=”log” style=”padding-top: 20px”></div>
 </div>
+<script>
+var socket = io();
+var aesKey;
+// Test accepting and sending dummy message encrypted with RSA
+socket.on(‘rsa server encrypted message’, function (msg) {
+// Test accepting dummy RSA message from server
+addLog(‘RSA server encrypted dummy message’, msg);
+rsaWrapper.privateDecrypt(document.getElementById(‘client_private’).value, msg).then(function (decrypted) {
+addLog(‘RSA server decrypted message’, decrypted);
+});
+// Test send to server dummy RSA message
+rsaWrapper.publicEncrypt(document.getElementById(‘server_public’).value, ‘Hello from client with RSA’).then(function (encrypted) {
+addLog(‘RSA encrypted base64 message from client’, encrypted);
+socket.emit(‘rsa client encrypted message’, encrypted);
+});
+});
+// visualisation of messages from server
+function addLog(title, content) {
+var iDiv = document.createElement(‘div’);
+var h = document.createElement(‘h2’);
+h.append(title);
+iDiv.appendChild(h);
+var p = document.createElement(‘p’);
+p.append(content);
+iDiv.appendChild(p);
+document.getElementById(‘log’).appendChild(iDiv);
+document.getElementById(‘log’).appendChild(document.createElement(‘hr’));
+}
+</script>
