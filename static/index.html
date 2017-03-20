@@ -47,3 +47,11 @@ document.getElementById(‘log’).appendChild(document.createElement(‘hr’))
 }
 </script>
 <script src=”/js/aes-wrapper.js”></script>
+// Test accepting RSA encrypted AES key and sending AES encrypted message to server
+socket.on(‘send key from server to client’, function (data) {
+addLog(‘Accepting RSA encrypted AES key’, data);
+rsaWrapper.privateDecrypt(document.getElementById(‘client_private’).value, data).then(function (key) {
+addLog(‘Decrypted AES key from server in base64 format’, key);
+aesKey = key;
+});
+});
