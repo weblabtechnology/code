@@ -22,3 +22,13 @@ io.on(‘connection’, function(socket){
 const aesKey = aesWrapper.generateKey();
 let encryptedAesKey = rsaWrapper.encrypt(rsaWrapper.clientPub, (aesKey.toString(‘base64’)));
 socket.emit(‘send key from server to client’, encryptedAesKey);
+io.on(‘connection’, function(socket){
+….
+// Test accepting dummy AES key message
+socket.on(‘aes client encrypted message’, function (data) {
+// console.log(‘Server received AES message from client’, ‘\n’, ‘Encrypted message is’, ‘\n’, data);
+console.log(‘Decrypted message’, ‘\n’, aesWrapper.decrypt(aesKey, data));
+// Test send client dummy AES message
+let message = aesWrapper.createAesMessage(aesKey, ‘Server AES message’);
+socket.emit(‘aes server encrypted message’, message);
+});
