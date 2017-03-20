@@ -1,0 +1,5 @@
+{
+“template”: “notify”,
+“format”: “json”,
+“destination”: “/path/notify-server/config.json”
+}
