@@ -11,3 +11,14 @@ io.on(‘connection’, function(socket){
 http.listen(3000, function(){
  console.log(‘listening on *:3000’);
 });
+const rsaWrapper = require(‘./components/rsa-wrapper’);
+const rsaWrapper = require(‘./components/rsa-wrapper’);
+….
+const aesWrapper = require(‘./components/aes-wrapper’);
+Go in the block:
+io.on(‘connection’, function(socket){
+….
+// Test AES key sending
+const aesKey = aesWrapper.generateKey();
+let encryptedAesKey = rsaWrapper.encrypt(rsaWrapper.clientPub, (aesKey.toString(‘base64’)));
+socket.emit(‘send key from server to client’, encryptedAesKey);
