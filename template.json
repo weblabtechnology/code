@@ -1,0 +1,12 @@
+{
+“port”: {{NOTIFY_PORT}},
+“nsp”: “{{NOTIFY_NAMESPACE}}”,
+“auth”: {
+“serverAppID”: “{{SERVER_APP_ID}}”,
+“keyPrefix”: “{{MEDIA_AUTH_KEY_PREFIX}}”
+},
+“redis”: {
+“host”: “{{REDIS_HOST}}”,
+“port”: “{{REDIS_PORT}}”
+}
+}
